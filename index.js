@@ -8,14 +8,14 @@ let screenValue = '';
 let numArr = [];
 let operator = '';
 
-let handleClear = () => {
+$('#clear').on('click', () => {
   screenValue = '';
   operator = '';
   numArr = [];
   screen.val(screenValue);
-};
+});
 
-let handleEquals = () => {
+$('#equals').on('click', () => {
   switch (true) {
     case operator === 'add':
       numArr.push(parseInt(screenValue));
@@ -31,15 +31,20 @@ let handleEquals = () => {
       //
       break;
     case operator === 'multiply':
-      //
+      numArr.push(parseInt(screenValue));
+      screenValue = numArr.reduce((acc, cur) => {
+        return acc * cur;
+      });
+      screen.val(screenValue);
+      operator = 'equals';
       break;
     case operator === 'divide':
       //
       break;
   }
-};
+});
 
-let handleAdd = () => {
+$('#add').on('click', () => {
   if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'add';
@@ -52,21 +57,32 @@ let handleAdd = () => {
     screen.val(screenValue);
     screenValue = '';
   }
-};
+});
 
-let handleSubtract = () => {
+$('#subtract').on('click', () => {
 
-};
+});
 
-let handleMultiply = () => {
+$('#multiply').on('click', () => {
+  if (operator !== 'equals' && operator !== 'push') {
+    numArr.push(parseInt(screenValue));
+    operator = 'multiply';
+    screen.val(screenValue);
+    screenValue = '';
+  } else {
+    numArr = [];
+    numArr.push(parseInt(screenValue));
+    operator = 'multiply';
+    screen.val(screenValue);
+    screenValue = '';
+  }
+});
 
-};
+$('#divide').on('click', () => {
 
-let handleDivide = () => {
+});
 
-};
-
-let handleOne = () => {
+$('#1').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 1;
     screen.val(screenValue);
@@ -76,9 +92,9 @@ let handleOne = () => {
     screenValue += 1;
     screen.val(screenValue);
   }
-};
+});
 
-let handleTwo = () => {
+$('#2').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 2;
     screen.val(screenValue);
@@ -88,9 +104,9 @@ let handleTwo = () => {
     screenValue += 2;
     screen.val(screenValue);
   }
-};
+});
 
-let handleThree = () => {
+$('#3').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 3;
     screen.val(screenValue);
@@ -100,9 +116,9 @@ let handleThree = () => {
     screenValue += 3;
     screen.val(screenValue);
   }
-};
+});
 
-let handleFour = () => {
+$('#4').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 4;
     screen.val(screenValue);
@@ -112,9 +128,9 @@ let handleFour = () => {
     screenValue += 4;
     screen.val(screenValue);
   }
-};
+});
 
-let handleFive = () => {
+$('#5').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 5;
     screen.val(screenValue);
@@ -124,9 +140,9 @@ let handleFive = () => {
     screenValue += 5;
     screen.val(screenValue);
   }
-};
+});
 
-let handleSix = () => {
+$('#6').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 6;
     screen.val(screenValue);
@@ -136,9 +152,9 @@ let handleSix = () => {
     screenValue += 6;
     screen.val(screenValue);
   }
-};
+});
 
-let handleSeven = () => {
+$('#7').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 7;
     screen.val(screenValue);
@@ -148,9 +164,9 @@ let handleSeven = () => {
     screenValue += 7;
     screen.val(screenValue);
   }
-};
+});
 
-let handleEight = () => {
+$('#8').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 8;
     screen.val(screenValue);
@@ -160,9 +176,9 @@ let handleEight = () => {
     screenValue += 8;
     screen.val(screenValue);
   }
-};
+});
 
-let handleNine = () => {
+$('#9').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 9;
     screen.val(screenValue);
@@ -172,9 +188,9 @@ let handleNine = () => {
     screenValue += 9;
     screen.val(screenValue);
   }
-};
+});
 
-let handleZero = () => {
+$('#0').on('click', () => {
   if (operator !== 'equals') {
     screenValue += 0;
     screen.val(screenValue);
@@ -183,59 +199,5 @@ let handleZero = () => {
     operator = 'push';
     screenValue += 0;
     screen.val(screenValue);
-  }
-};
-
-buttons.on('click', e => {
-  e.preventDefault();
-  switch (true) {
-    case e.target.id === 'clear':
-      handleClear();
-      break;
-    case e.target.id === 'add':
-      handleAdd();
-      break;
-    case e.target.id === 'subtract':
-      handleSubtract();
-      break;
-    case e.target.id === 'multiply':
-      handleMultiply();
-      break;
-    case e.target.id === 'divide':
-      handleDivide();
-      break;
-    case e.target.id === 'equals':
-      handleEquals();
-      break;
-    case e.target.id === '1':
-      handleOne();
-      break;
-    case e.target.id === '2':
-      handleTwo();
-      break;
-    case e.target.id === '3':
-      handleThree();
-      break;
-    case e.target.id === '4':
-      handleFour();
-      break;
-    case e.target.id === '5':
-      handleFive();
-      break;
-    case e.target.id === '6':
-      handleSix();
-      break;
-    case e.target.id === '7':
-      handleSeven();
-      break;
-    case e.target.id === '8':
-      handleEight();
-      break;
-    case e.target.id === '9':
-      handleNine();
-      break;
-    case e.target.id === '0':
-      handleZero();
-      break;
   }
 });
