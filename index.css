@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
 * {
   box-sizing: border-box;
 }
@@ -29,6 +32,10 @@ body {
   border-radius: 0;
 }
 
+.calculator input, .btn {
+  font-family: 'Space Mono';
+}
+
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -38,10 +45,23 @@ body {
 
 .btn  {
   background: rgba(0, 0, 0, 0.5);
+  outline: none;
   border: 1px solid #111;
   padding: 20px;
   color: #EEE;
   border-radius: 5px;
   font-size: 22px;
   cursor: pointer;
+}
+
+.clear, .zero {
+  grid-column: span 3;
+}
+
+.clear {
+  background: #3572DB;
+}
+
+.equals {
+  background: #28D060;
 }
