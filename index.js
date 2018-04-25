@@ -25,6 +25,7 @@ $('#equals').on('click', () => {
         return acc + cur;
       });
       screen.val(screenValue);
+      operator = 'equals';
       numArr = [];
       break;
     case operator === 'subtract':
@@ -105,7 +106,7 @@ let handleOpEquals = () => {
 $('#add').on('click', () => {
   if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
     handleOpEquals();
-    operator === 'add';
+    operator = 'add';
     $('#add').css('background', '#EEBB55');
   } else if (operator === 'equals') {
     operator = 'add';
