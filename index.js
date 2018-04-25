@@ -8,6 +8,13 @@ let screenValue = '';
 let numArr = [];
 let operator = '';
 
+let handleClear = () => {
+  screenValue = '';
+  operator = '';
+  numArr = [];
+  screen.val(screenValue);
+};
+
 let handleEquals = () => {
   switch (true) {
     case operator === 'add':
@@ -33,7 +40,7 @@ let handleEquals = () => {
 };
 
 let handleAdd = () => {
-  if (operator !== 'equals') {
+  if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'add';
     screen.val(screenValue);
@@ -65,6 +72,7 @@ let handleOne = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 1;
     screen.val(screenValue);
   }
@@ -76,6 +84,7 @@ let handleTwo = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 2;
     screen.val(screenValue);
   }
@@ -87,6 +96,7 @@ let handleThree = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 3;
     screen.val(screenValue);
   }
@@ -98,6 +108,7 @@ let handleFour = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 4;
     screen.val(screenValue);
   }
@@ -109,6 +120,7 @@ let handleFive = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 5;
     screen.val(screenValue);
   }
@@ -120,6 +132,7 @@ let handleSix = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 6;
     screen.val(screenValue);
   }
@@ -131,6 +144,7 @@ let handleSeven = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 7;
     screen.val(screenValue);
   }
@@ -142,6 +156,7 @@ let handleEight = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 8;
     screen.val(screenValue);
   }
@@ -153,6 +168,7 @@ let handleNine = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 9;
     screen.val(screenValue);
   }
@@ -164,6 +180,7 @@ let handleZero = () => {
     screen.val(screenValue);
   } else {
     screenValue = '';
+    operator = 'push';
     screenValue += 0;
     screen.val(screenValue);
   }
@@ -173,24 +190,19 @@ buttons.on('click', e => {
   e.preventDefault();
   switch (true) {
     case e.target.id === 'clear':
-      screenValue = '';
-      numArr = [];
-      screen.val(screenValue);
+      handleClear();
       break;
     case e.target.id === 'add':
       handleAdd();
       break;
     case e.target.id === 'subtract':
-      // screenValue = '';
-      // screen.val(screenValue);
+      handleSubtract();
       break;
     case e.target.id === 'multiply':
-      // screenValue = '';
-      // screen.val(screenValue);
+      handleMultiply();
       break;
     case e.target.id === 'divide':
-      // screenValue = '';
-      // screen.val(screenValue);
+      handleDivide();
       break;
     case e.target.id === 'equals':
       handleEquals();
