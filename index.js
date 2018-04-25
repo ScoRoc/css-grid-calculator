@@ -14,6 +14,7 @@ $('#clear').on('click', () => {
   operator = '';
   numArr = [];
   screen.val(screenValue);
+  $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
 });
 
 $('#equals').on('click', () => {
@@ -24,7 +25,7 @@ $('#equals').on('click', () => {
         return acc + cur;
       });
       screen.val(screenValue);
-      operator = 'equals';
+      numArr = [];
       break;
     case operator === 'subtract':
       numArr.push(parseInt(screenValue));
@@ -33,6 +34,7 @@ $('#equals').on('click', () => {
       });
       screen.val(screenValue);
       operator = 'equals';
+      numArr = [];
       break;
     case operator === 'multiply':
       numArr.push(parseInt(screenValue));
@@ -41,6 +43,7 @@ $('#equals').on('click', () => {
       });
       screen.val(screenValue);
       operator = 'equals';
+      numArr = [];
       break;
     case operator === 'divide':
       numArr.push(parseInt(screenValue));
@@ -49,19 +52,66 @@ $('#equals').on('click', () => {
       });
       screen.val(screenValue);
       operator = 'equals';
+      numArr = [];
       break;
   }
 });
 
+let handleOpEquals = () => {
+  switch (true) {
+    case operator === 'add':
+      numArr.push(parseInt(screenValue));
+      screenValue = numArr.reduce((acc, cur) => {
+        return acc + cur;
+      });
+      numArr = [];
+      numArr.push(screenValue);
+      screen.val(screenValue);
+      screenValue = '';
+      break;
+    case operator === 'subtract':
+      numArr.push(parseInt(screenValue));
+      screenValue = numArr.reduce((acc, cur) => {
+        return acc - cur;
+      });
+      numArr = [];
+      numArr.push(screenValue);
+      screen.val(screenValue);
+      screenValue = '';
+      break;
+    case operator === 'multiply':
+      numArr.push(parseInt(screenValue));
+      screenValue = numArr.reduce((acc, cur) => {
+        return acc * cur;
+      });
+      numArr = [];
+      numArr.push(screenValue);
+      screen.val(screenValue);
+      screenValue = '';
+      break;
+    case operator === 'divide':
+      numArr.push(parseInt(screenValue));
+      screenValue = numArr.reduce((acc, cur) => {
+        return acc / cur;
+      });
+      numArr = [];
+      numArr.push(screenValue);
+      screen.val(screenValue);
+      screenValue = '';
+      break;
+  }
+};
+
 $('#add').on('click', () => {
-  if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
-    operator = 'add';
-    screen.val(screenValue);
-    screenValue = '';
+  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
+    handleOpEquals();
+    operator === 'add';
     $('#add').css('background', '#EEBB55');
-  } else {
-    numArr = [];
+  } else if (operator === 'equals') {
+    operator = 'add';
+    handleOpEquals();
+    $('#add').css('background', '#EEBB55');
+  } else if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'add';
     screen.val(screenValue);
@@ -71,14 +121,15 @@ $('#add').on('click', () => {
 });
 
 $('#subtract').on('click', () => {
-  if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
+  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
+    handleOpEquals();
     operator = 'subtract';
-    screen.val(screenValue);
-    screenValue = '';
     $('#subtract').css('background', '#EEBB55');
-  } else {
-    numArr = [];
+  } else if (operator === 'equals') {
+    operator = 'subtract';
+    handleOpEquals();
+    $('#subtract').css('background', '#EEBB55');
+  } else if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'subtract';
     screen.val(screenValue);
@@ -88,14 +139,15 @@ $('#subtract').on('click', () => {
 });
 
 $('#multiply').on('click', () => {
-  if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
+  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
+    handleOpEquals();
     operator = 'multiply';
-    screen.val(screenValue);
-    screenValue = '';
     $('#multiply').css('background', '#EEBB55');
-  } else {
-    numArr = [];
+  } else if (operator === 'equals') {
+    operator = 'multiply';
+    handleOpEquals();
+    $('#multiply').css('background', '#EEBB55');
+  }  else if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'multiply';
     screen.val(screenValue);
@@ -105,14 +157,15 @@ $('#multiply').on('click', () => {
 });
 
 $('#divide').on('click', () => {
-  if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
+  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
+    handleOpEquals();
     operator = 'divide';
-    screen.val(screenValue);
-    screenValue = '';
     $('#divide').css('background', '#EEBB55');
-  } else {
-    numArr = [];
+  } else if (operator === 'equals') {
+    operator = 'divide';
+    handleOpEquals();
+    $('#divide').css('background', '#EEBB55');
+  }  else if (operator !== 'equals' && operator !== 'push') {
     numArr.push(parseInt(screenValue));
     operator = 'divide';
     screen.val(screenValue);
