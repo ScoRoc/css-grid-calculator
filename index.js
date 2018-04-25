@@ -16,6 +16,7 @@ let handleEquals = () => {
         return acc + cur;
       });
       screen.val(screenValue);
+      operator = 'equals';
       // numArr = [];
       // numArr.push(parseInt(screenValue));
       break;
@@ -31,6 +32,143 @@ let handleEquals = () => {
   }
 };
 
+let handleAdd = () => {
+  if (operator !== 'equals') {
+    numArr.push(parseInt(screenValue));
+    operator = 'add';
+    screen.val(screenValue);
+    screenValue = '';
+  } else {
+    numArr = [];
+    numArr.push(parseInt(screenValue));
+    operator = 'add';
+    screen.val(screenValue);
+    screenValue = '';
+  }
+};
+
+let handleSubtract = () => {
+
+};
+
+let handleMultiply = () => {
+
+};
+
+let handleDivide = () => {
+
+};
+
+let handleOne = () => {
+  if (operator !== 'equals') {
+    screenValue += 1;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 1;
+    screen.val(screenValue);
+  }
+};
+
+let handleTwo = () => {
+  if (operator !== 'equals') {
+    screenValue += 2;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 2;
+    screen.val(screenValue);
+  }
+};
+
+let handleThree = () => {
+  if (operator !== 'equals') {
+    screenValue += 3;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 3;
+    screen.val(screenValue);
+  }
+};
+
+let handleFour = () => {
+  if (operator !== 'equals') {
+    screenValue += 4;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 4;
+    screen.val(screenValue);
+  }
+};
+
+let handleFive = () => {
+  if (operator !== 'equals') {
+    screenValue += 5;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 5;
+    screen.val(screenValue);
+  }
+};
+
+let handleSix = () => {
+  if (operator !== 'equals') {
+    screenValue += 6;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 6;
+    screen.val(screenValue);
+  }
+};
+
+let handleSeven = () => {
+  if (operator !== 'equals') {
+    screenValue += 7;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 7;
+    screen.val(screenValue);
+  }
+};
+
+let handleEight = () => {
+  if (operator !== 'equals') {
+    screenValue += 8;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 8;
+    screen.val(screenValue);
+  }
+};
+
+let handleNine = () => {
+  if (operator !== 'equals') {
+    screenValue += 9;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 9;
+    screen.val(screenValue);
+  }
+};
+
+let handleZero = () => {
+  if (operator !== 'equals') {
+    screenValue += 0;
+    screen.val(screenValue);
+  } else {
+    screenValue = '';
+    screenValue += 0;
+    screen.val(screenValue);
+  }
+};
+
 buttons.on('click', e => {
   e.preventDefault();
   switch (true) {
@@ -40,12 +178,9 @@ buttons.on('click', e => {
       screen.val(screenValue);
       break;
     case e.target.id === 'add':
-      numArr.push(parseInt(screenValue));
-      operator = 'add';
-      screen.val(screenValue);
-      screenValue = '';
+      handleAdd();
       break;
-    case e.target.id === 'sbutract':
+    case e.target.id === 'subtract':
       // screenValue = '';
       // screen.val(screenValue);
       break;
@@ -61,44 +196,34 @@ buttons.on('click', e => {
       handleEquals();
       break;
     case e.target.id === '1':
-      screenValue += 1;
-      screen.val(screenValue);
+      handleOne();
       break;
     case e.target.id === '2':
-      screenValue += 2;
-      screen.val(screenValue);
+      handleTwo();
       break;
     case e.target.id === '3':
-      screenValue += 3;
-      screen.val(screenValue);
+      handleThree();
       break;
     case e.target.id === '4':
-      screenValue += 4;
-      screen.val(screenValue);
+      handleFour();
       break;
     case e.target.id === '5':
-      screenValue += 5;
-      screen.val(screenValue);
+      handleFive();
       break;
     case e.target.id === '6':
-      screenValue += 6;
-      screen.val(screenValue);
+      handleSix();
       break;
     case e.target.id === '7':
-      screenValue += 7;
-      screen.val(screenValue);
+      handleSeven();
       break;
     case e.target.id === '8':
-      screenValue += 8;
-      screen.val(screenValue);
+      handleEight();
       break;
     case e.target.id === '9':
-      screenValue += 9;
-      screen.val(screenValue);
+      handleNine();
       break;
     case e.target.id === '0':
-      screenValue += 0;
-      screen.val(screenValue);
+      handleZero();
       break;
   }
 });
