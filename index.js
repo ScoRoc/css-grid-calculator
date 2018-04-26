@@ -15,7 +15,7 @@ $('#clear').on('click', () => {
   $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
 });
 
-let handleEquals = () => {
+let handleReduce = () => {
   numArr.push(parseInt(screenValue));
   screenValue = numArr.reduce((acc, cur) => {
     switch (true) {
@@ -33,6 +33,10 @@ let handleEquals = () => {
         break;
     }
   });
+};
+
+let handleEquals = () => {
+  handleReduce();
   screen.val(screenValue);
   operator = 'equals';
   numArr = [];
@@ -41,23 +45,7 @@ let handleEquals = () => {
 $('#equals').on('click', () => { handleEquals() });
 
 let handleOpEquals = () => {
-  numArr.push(parseInt(screenValue));
-  screenValue = numArr.reduce((acc, cur) => {
-    switch (true) {
-      case operator === 'add':
-        return acc + cur;
-        break;
-      case operator === 'subtract':
-        return acc - cur;
-        break;
-      case operator === 'multiply':
-        return acc * cur;
-        break;
-      case operator === 'divide':
-        return acc / cur;
-        break;
-    }
-  });
+  handleReduce();
   numArr = [];
   numArr.push(screenValue);
   screen.val(screenValue);
