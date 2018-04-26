@@ -15,161 +15,87 @@ $('#clear').on('click', () => {
   $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
 });
 
-$('#equals').on('click', () => {
-  switch (true) {
-    case operator === 'add':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+let handleEquals = () => {
+  numArr.push(parseInt(screenValue));
+  screenValue = numArr.reduce((acc, cur) => {
+    switch (true) {
+      case operator === 'add':
         return acc + cur;
-      });
-      screen.val(screenValue);
-      operator = 'equals';
-      numArr = [];
-      break;
-    case operator === 'subtract':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'subtract':
         return acc - cur;
-      });
-      screen.val(screenValue);
-      operator = 'equals';
-      numArr = [];
-      break;
-    case operator === 'multiply':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'multiply':
         return acc * cur;
-      });
-      screen.val(screenValue);
-      operator = 'equals';
-      numArr = [];
-      break;
-    case operator === 'divide':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'divide':
         return acc / cur;
-      });
-      screen.val(screenValue);
-      operator = 'equals';
-      numArr = [];
-      break;
-  }
-});
+        break;
+    }
+  });
+  screen.val(screenValue);
+  operator = 'equals';
+  numArr = [];
+};
+
+$('#equals').on('click', () => { handleEquals() });
 
 let handleOpEquals = () => {
-  switch (true) {
-    case operator === 'add':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+  numArr.push(parseInt(screenValue));
+  screenValue = numArr.reduce((acc, cur) => {
+    switch (true) {
+      case operator === 'add':
         return acc + cur;
-      });
-      numArr = [];
-      numArr.push(screenValue);
-      screen.val(screenValue);
-      screenValue = '';
-      break;
-    case operator === 'subtract':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'subtract':
         return acc - cur;
-      });
-      numArr = [];
-      numArr.push(screenValue);
-      screen.val(screenValue);
-      screenValue = '';
-      break;
-    case operator === 'multiply':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'multiply':
         return acc * cur;
-      });
-      numArr = [];
-      numArr.push(screenValue);
-      screen.val(screenValue);
-      screenValue = '';
-      break;
-    case operator === 'divide':
-      numArr.push(parseInt(screenValue));
-      screenValue = numArr.reduce((acc, cur) => {
+        break;
+      case operator === 'divide':
         return acc / cur;
-      });
-      numArr = [];
-      numArr.push(screenValue);
-      screen.val(screenValue);
-      screenValue = '';
-      break;
+        break;
+    }
+  });
+  numArr = [];
+  numArr.push(screenValue);
+  screen.val(screenValue);
+  screenValue = '';
+};
+
+let handleOp = op => {
+  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
+    handleOpEquals();
+    operator = op;
+    $(`#${op}`).css('background', '#EEBB55');
+  } else if (operator === 'equals') {
+    operator = op;
+    handleOpEquals();
+    $(`#${op}`).css('background', '#EEBB55');
+  } else if (operator !== 'equals' && operator !== 'push') {
+    numArr.push(parseInt(screenValue));
+    operator = op;
+    screen.val(screenValue);
+    screenValue = '';
+    $(`#${op}`).css('background', '#EEBB55');
   }
 };
 
-$('#add').on('click', () => {
-  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
-    handleOpEquals();
-    operator = 'add';
-    $('#add').css('background', '#EEBB55');
-  } else if (operator === 'equals') {
-    operator = 'add';
-    handleOpEquals();
-    $('#add').css('background', '#EEBB55');
-  } else if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
-    operator = 'add';
-    screen.val(screenValue);
-    screenValue = '';
-    $('#add').css('background', '#EEBB55');
-  }
-});
-
-$('#subtract').on('click', () => {
-  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
-    handleOpEquals();
-    operator = 'subtract';
-    $('#subtract').css('background', '#EEBB55');
-  } else if (operator === 'equals') {
-    operator = 'subtract';
-    handleOpEquals();
-    $('#subtract').css('background', '#EEBB55');
-  } else if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
-    operator = 'subtract';
-    screen.val(screenValue);
-    screenValue = '';
-    $('#subtract').css('background', '#EEBB55');
-  }
-});
-
-$('#multiply').on('click', () => {
-  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
-    handleOpEquals();
-    operator = 'multiply';
-    $('#multiply').css('background', '#EEBB55');
-  } else if (operator === 'equals') {
-    operator = 'multiply';
-    handleOpEquals();
-    $('#multiply').css('background', '#EEBB55');
-  }  else if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
-    operator = 'multiply';
-    screen.val(screenValue);
-    screenValue = '';
-    $('#multiply').css('background', '#EEBB55');
-  }
-});
-
-$('#divide').on('click', () => {
-  if (operator === 'add' || operator === 'subtract' || operator === 'multiply' || operator === 'divide') {
-    handleOpEquals();
-    operator = 'divide';
-    $('#divide').css('background', '#EEBB55');
-  } else if (operator === 'equals') {
-    operator = 'divide';
-    handleOpEquals();
-    $('#divide').css('background', '#EEBB55');
-  }  else if (operator !== 'equals' && operator !== 'push') {
-    numArr.push(parseInt(screenValue));
-    operator = 'divide';
-    screen.val(screenValue);
-    screenValue = '';
-    $('#divide').css('background', '#EEBB55');
+ops.on('click', e => {
+  switch (true) {
+    case e.target.id === 'add':
+      handleOp('add');
+      break;
+    case e.target.id === 'subtract':
+      handleOp('subtract');
+      break;
+    case e.target.id === 'multiply':
+      handleOp('multiply');
+      break;
+    case e.target.id === 'divide':
+      handleOp('divide');
+      break;
   }
 });
 
@@ -187,7 +113,7 @@ let handleNumber = num => {
   }
 };
 
-$('.buttons').on('click', (e) => {
+$('.buttons').on('click', e => {
   switch (true) {
     case e.target.id === '1':
       handleNumber(1);
