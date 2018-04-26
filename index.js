@@ -1,7 +1,5 @@
 
 let screen = $('.calculator input');
-let buttons = $('.buttons');
-let btn = $('.btn');
 let ops = $('.ops');
 
 let screenValue = '';
@@ -175,142 +173,51 @@ $('#divide').on('click', () => {
   }
 });
 
-$('#1').on('click', () => {
+let handleNumber = num => {
   if (operator !== 'equals') {
-    screenValue += 1;
+    screenValue += num;
     screen.val(screenValue);
     $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
   } else {
     screenValue = '';
     operator = 'push';
-    screenValue += 1;
+    screenValue += num;
     screen.val(screenValue);
     $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
   }
-});
+};
 
-$('#2').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 2;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 2;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#3').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 3;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 3;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#4').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 4;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 4;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#5').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 5;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 5;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#6').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 6;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 6;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#7').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 7;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 7;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#8').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 8;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 8;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#9').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 9;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 9;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  }
-});
-
-$('#0').on('click', () => {
-  if (operator !== 'equals') {
-    screenValue += 0;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
-  } else {
-    screenValue = '';
-    operator = 'push';
-    screenValue += 0;
-    screen.val(screenValue);
-    $('.ops').css('background', 'rgba(0, 0, 0, 0.5)');
+$('.buttons').on('click', (e) => {
+  switch (true) {
+    case e.target.id === '1':
+      handleNumber(1);
+      break;
+    case e.target.id === '2':
+      handleNumber(2);
+      break;
+    case e.target.id === '3':
+      handleNumber(3);
+      break;
+    case e.target.id === '4':
+      handleNumber(4);
+      break;
+    case e.target.id === '5':
+      handleNumber(5);
+      break;
+    case e.target.id === '6':
+      handleNumber(6);
+      break;
+    case e.target.id === '7':
+      handleNumber(7);
+      break;
+    case e.target.id === '8':
+      handleNumber(8);
+      break;
+    case e.target.id === '9':
+      handleNumber(9);
+      break;
+    case e.target.id === '0':
+      handleNumber(0);
+      break;
   }
 });
